@@ -4,7 +4,7 @@ import courseWork1.Employee;
 
 public class Main {
 
-    static Employee[] employeeBook = new Employee[10];
+    private static Employee[] employeeBook = new Employee[10];
 
     public static void main(String[] args) {
         employeeBook[0] = new Employee("Антонов Кирилл Сергеевич", 2, 30000);
@@ -24,26 +24,30 @@ public class Main {
         System.out.println("Средняя зарплата = " + calculateAverageSalary());
         printNames();
         //повышенная сложность
-        increaseSalary(10);
-        System.out.println("Сотрудник с минимальной зарплатой в отделе 3 - " + findDepartmentMinSalary(3).getName());
-        System.out.println("Сотрудник с максимальной зарплатой в отделе 3 - " + findDepartmentMaxSalary(3).getName());
-        System.out.println("Сумма зарплат в отделе 3 = " + calculateDepartmentSum(3));
-        System.out.println("Средняя зарплата в отделе 3 = " + calculateDepartmentAverageSalary(3));
-        increaseDepartmentSalary(3, 5);
+        int percent = 10;
+        increaseSalary(percent);
+        int department = 3;
+        System.out.println("Сотрудник с минимальной зарплатой в отделе " + department + " - " + findDepartmentMinSalary(department).getName());
+        System.out.println("Сотрудник с максимальной зарплатой в отделе " + department + " - " + findDepartmentMaxSalary(department).getName());
+        System.out.println("Сумма зарплат в отделе 3 = " + calculateDepartmentSum(department));
+        System.out.println("Средняя зарплата в отделе 3 = " + calculateDepartmentAverageSalary(department));
+        percent = 5;
+        increaseDepartmentSalary(department, percent);
         System.out.println("Сотрудники отдела 3:");
-        printDepartmentNames(3);
-        System.out.println("Сотрудники с зарплатой меньше 40000:");
-        printEmployeesLessSalary(40000);
-        System.out.println("Сотрудники с зарплатой больше 40000:");
-        printEmployeesMoreSalary(40000);
+        printDepartmentNames(department);
+        int salary = 40000;
+        System.out.println("Сотрудники с зарплатой меньше " + salary + ":");
+        printEmployeesLessSalary(salary);
+        System.out.println("Сотрудники с зарплатой больше " + salary + ":");
+        printEmployeesMoreSalary(salary);
     }
 
-    public static void printEmployeeBook() {
+    private static void printEmployeeBook() {
         for (int i = 0; i < employeeBook.length; i++)
         System.out.println(employeeBook[i].toString());
     }
 
-    public static int calculateSum() {
+    private static int calculateSum() {
         int sum = 0;
         for (int i = 0; i < employeeBook.length; i++) {
             sum = sum + employeeBook[i].getSalary();
@@ -51,8 +55,8 @@ public class Main {
         return sum;
     }
 
-    public static Employee findEmployeeMinSalary() {
-        int minSalary = employeeBook[0].getSalary();
+    private static Employee findEmployeeMinSalary() {
+        int minSalary = Integer.MAX_VALUE;
         int index = 0;
         for (int i = 0; i < employeeBook.length; i++) {
             if (employeeBook[i].getSalary() < minSalary) {
@@ -63,8 +67,8 @@ public class Main {
         return employeeBook[index];
     }
 
-    public static Employee findEmployeeMaxSalary() {
-        int maxSalary = employeeBook[0].getSalary();
+    private static Employee findEmployeeMaxSalary() {
+        int maxSalary = Integer.MIN_VALUE;
         int index = 0;
         for (int i = 0; i < employeeBook.length; i++) {
             if (employeeBook[i].getSalary() > maxSalary) {
@@ -75,24 +79,24 @@ public class Main {
         return employeeBook[index];
     }
 
-    public static int calculateAverageSalary() {
-        return calculateSum()/employeeBook.length;
+    private static double calculateAverageSalary() {
+        return (double) calculateSum()/employeeBook.length;
     }
 
-    public static void printNames() {
+    private static void printNames() {
         for (int i = 0; i < employeeBook.length; i++) {
             System.out.println(employeeBook[i].getName());
         }
     }
 
     //повышенная сложность
-    public static void increaseSalary(int arg) {
+    private static void increaseSalary(int arg) {
         for (int i = 0; i < employeeBook.length; i++) {
             employeeBook[i].setSalary(employeeBook[i].getSalary() + employeeBook[i].getSalary() * arg / 100);
         }
     }
 
-    public static Employee findDepartmentMinSalary(int department) {
+    private static Employee findDepartmentMinSalary(int department) {
         int minSalary = 100000;
         int index = 0;
         for (int i = 0; i < employeeBook.length; i++) {
@@ -104,7 +108,7 @@ public class Main {
         return employeeBook[index];
     }
 
-    public static Employee findDepartmentMaxSalary(int department) {
+    private static Employee findDepartmentMaxSalary(int department) {
         int maxSalary = 0;
         int index = 0;
         for (int i = 0; i < employeeBook.length; i++) {
@@ -116,7 +120,7 @@ public class Main {
         return employeeBook[index];
     }
 
-    public static int calculateDepartmentSum(int department) {
+    private static int calculateDepartmentSum(int department) {
         int sum = 0;
         for (int i = 0; i < employeeBook.length; i++) {
             if (employeeBook[i].getDepartment() == department) {sum = sum + employeeBook[i].getSalary();}
@@ -124,7 +128,7 @@ public class Main {
         return sum;
     }
 
-    public static int calculateDepartmentAverageSalary(int department) {
+    private static int calculateDepartmentAverageSalary(int department) {
         int employeeQuantity = 0;
         int sum = 0;
         for (int i = 0; i < employeeBook.length; i++) {
@@ -136,7 +140,7 @@ public class Main {
         return sum/employeeQuantity;
     }
 
-    public static void increaseDepartmentSalary(int department, int arg) {
+    private static void increaseDepartmentSalary(int department, int arg) {
         for (int i = 0; i < employeeBook.length; i++) {
             if (employeeBook[i].getDepartment() == department) {
                 employeeBook[i].setSalary(employeeBook[i].getSalary() + employeeBook[i].getSalary() * arg / 100);
@@ -144,7 +148,7 @@ public class Main {
         }
     }
 
-    public static void printDepartmentNames(int department) {
+    private static void printDepartmentNames(int department) {
         for (int i = 0; i < employeeBook.length; i++) {
             if (employeeBook[i].getDepartment() == department)
                 System.out.println("Сотрудник " + employeeBook[i].getId() + " " + employeeBook[i].getName()
@@ -152,7 +156,7 @@ public class Main {
         }
     }
 
-    public static void printEmployeesLessSalary(int number) {
+    private static void printEmployeesLessSalary(int number) {
         for (int i = 0; i < employeeBook.length; i++) {
             if (employeeBook[i].getSalary() < number) {
                 System.out.println(employeeBook[i].toString());
@@ -160,7 +164,7 @@ public class Main {
         }
     }
 
-    public static void printEmployeesMoreSalary(int number) {
+    private static void printEmployeesMoreSalary(int number) {
         for (int i = 0; i < employeeBook.length; i++) {
             if (employeeBook[i].getSalary() > number) {
                 System.out.println(employeeBook[i].toString());
