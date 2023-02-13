@@ -7,6 +7,7 @@ public class Main {
     private static Employee[] employeeBook = new Employee[10];
 
     public static void main(String[] args) {
+
         employeeBook[0] = new Employee("Антонов Кирилл Сергеевич", 2, 30000);
         employeeBook[1] = new Employee("Сергеев Иван Иванович", 3, 26000);
         employeeBook[2] = new Employee("Алексеева Зинаида Викторовна", 1, 42000);
@@ -17,6 +18,7 @@ public class Main {
         employeeBook[7] = new Employee("Давлатов Константин Евгеньевич", 3, 39000);
         employeeBook[8] = new Employee("Пассатов Гольф Джеттович", 5, 41150);
         employeeBook[9] = new Employee("Скорпионов Игорь Михайлович", 4, 32500);
+
         printEmployeeBook();
         System.out.println("Сумма всех зарплат = " + calculateSum());
         System.out.println("Сотрудник с минимальной зарплатой - " + findEmployeeMinSalary().getName());
